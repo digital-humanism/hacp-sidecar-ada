@@ -1,5 +1,12 @@
 # hacp-sidecar-ada
 
+![Release](https://img.shields.io/badge/HACP-1.1.1-334155?style=flat-square)
+![Ada](https://img.shields.io/badge/Ada%20%2F%20SPARK-implementation-334155?style=flat-square)
+![Core](https://img.shields.io/badge/HACP--Core-38%2F38%20PASS-16784a?style=flat-square)
+![HC2](https://img.shields.io/badge/HC2--55-55%2F55%20PASS-16784a?style=flat-square)
+![Authorization](https://img.shields.io/badge/Authorization--v2-3%2F3%20PASS-16784a?style=flat-square)
+![License](https://img.shields.io/badge/License-AGPLv3%20%2B%20Commercial-334155?style=flat-square)
+
 Ada/SPARK independent HACP sidecar reproduction within the HUMANIST / HACP project.
 
 This repository provides a technically self-contained Ada/SPARK implementation and public reproduction surface for the HACP 1.1.1 release composition.
