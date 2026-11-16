@@ -6,6 +6,8 @@
 ![HC2](https://img.shields.io/badge/HC2--55-55%2F55%20PASS-16784a?style=flat-square)
 ![Authorization](https://img.shields.io/badge/Authorization--v2-3%2F3%20PASS-16784a?style=flat-square)
 ![License](https://img.shields.io/badge/License-AGPLv3%20%2B%20Commercial-334155?style=flat-square)
+[![Ada Fast CI](https://github.com/digital-humanism/hacp-sidecar-ada/actions/workflows/ci.yml/badge.svg?branch=RELEASE%2F1.1.1)](https://github.com/digital-humanism/hacp-sidecar-ada/actions/workflows/ci.yml?query=branch%3ARELEASE%2F1.1.1)
+[![Public reproduction](https://img.shields.io/badge/Public%20reproduction-verified-brightgreen)](https://github.com/digital-humanism/hacp-sidecar-ada/actions/workflows/ci.yml?query=branch%3ARELEASE%2F1.1.1)
 
 Ada/SPARK independent HACP sidecar reproduction within the HUMANIST / HACP project.
 
