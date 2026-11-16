@@ -190,8 +190,7 @@ foreach ($Dir in @(
 Write-Host
 Write-Host '=== CLEAN BUILD ==='
 
-& alr exec -- gprbuild `
-    -P (Join-Path $RepoRoot 'hacp_ada.gpr')
+& alr build
 
 if ($LASTEXITCODE -ne 0) {
     throw "Ada build failed with exit code $LASTEXITCODE"
