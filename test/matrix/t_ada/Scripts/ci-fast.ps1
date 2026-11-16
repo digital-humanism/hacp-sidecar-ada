@@ -84,7 +84,33 @@ $ToolchainRoot =
     Join-Path $env:LOCALAPPDATA 'alire\cache\toolchains'
 
 $MsysRoot =
-    Join-Path $env:LOCALAPPDATA 'alire\cache\msys64'
+    if (
+        -not [string]::IsNullOrWhiteSpace(
+            $env:HACP_MSYS2_ROOT
+        )
+    ) {
+        $env:HACP_MSYS2_ROOT
+    }
+    else {
+        Join-Path `
+            $env:LOCALAPPDATA `
+            'alire\cache\msys64'
+    }
+
+$MsysSource =
+    if (
+        -not [string]::IsNullOrWhiteSpace(
+            $env:HACP_MSYS2_ROOT
+        )
+    ) {
+        'CI_EXPLICIT'
+    }
+    else {
+        'ALIRE_LOCAL_FALLBACK'
+    }
+
+Write-Host "MSYS2_ROOT=$MsysRoot"
+Write-Host "MSYS2_SOURCE=$MsysSource"
 
 $GnatRoots =
     @(

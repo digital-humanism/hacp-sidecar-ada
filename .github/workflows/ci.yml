@@ -30,6 +30,16 @@ jobs:
       - name: Setup Alire 2.1.1
         uses: alire-project/setup-alire@v6.0.0
 
+      - name: Setup compatible MSYS2 runtime
+        id: msys2
+        uses: msys2/setup-msys2@v2.33.0
+        with:
+          msystem: MINGW64
+          suppress-deprecation-warnings: msystem-mingw64
+          update: true
+          install: >-
+            mingw-w64-x86_64-libsodium
+
       - name: Select exact Ada toolchain
         shell: pwsh
         run: |
@@ -62,5 +72,7 @@ jobs:
 
       - name: Run Ada fast CI
         shell: pwsh
+        env:
+          HACP_MSYS2_ROOT: ${{ steps.msys2.outputs.msys2-location }}
         run: |
           ./test/matrix/t_ada/Scripts/ci-fast.ps1
