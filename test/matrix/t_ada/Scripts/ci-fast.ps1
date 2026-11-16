@@ -149,10 +149,14 @@ $GprBin =
 $MingwBin =
     Join-Path $MsysRoot 'mingw64\bin'
 
+$MingwLib =
+    Join-Path $MsysRoot 'mingw64\lib'
+
 foreach ($RuntimePath in @(
     $GnatBin,
     $GprBin,
-    $MingwBin
+    $MingwBin,
+    $MingwLib
 )) {
     if (-not (Test-Path -LiteralPath $RuntimePath -PathType Container)) {
         throw "Runtime directory missing: $RuntimePath"
@@ -166,6 +170,23 @@ if (-not (Test-Path -LiteralPath $SodiumDll -PathType Leaf)) {
     throw "libsodium runtime missing: $SodiumDll"
 }
 
+$SodiumImportLibrary =
+    Join-Path $MingwLib 'libsodium.dll.a'
+
+$SodiumStaticLibrary =
+    Join-Path $MingwLib 'libsodium.a'
+
+if (
+    -not (
+        (Test-Path -LiteralPath $SodiumImportLibrary -PathType Leaf) -or
+        (Test-Path -LiteralPath $SodiumStaticLibrary -PathType Leaf)
+    )
+) {
+    throw "libsodium link library missing under: $MingwLib"
+}
+
+Write-Host "MINGW_LIB=$MingwLib"
+Write-Host 'LIBSODIUM_LINK_MATERIAL=PASS'
 Write-Host 'TOOLCHAIN_RESOLUTION=PASS'
 
 Set-Location -LiteralPath $RepoRoot
@@ -190,10 +211,33 @@ foreach ($Dir in @(
 Write-Host
 Write-Host '=== CLEAN BUILD ==='
 
-& alr build
+$OriginalLibraryPath =
+    $env:LIBRARY_PATH
 
-if ($LASTEXITCODE -ne 0) {
-    throw "Ada build failed with exit code $LASTEXITCODE"
+try {
+    $env:LIBRARY_PATH =
+        if (
+            [string]::IsNullOrWhiteSpace(
+                $OriginalLibraryPath
+            )
+        ) {
+            $MingwLib
+        }
+        else {
+            "$MingwLib;$OriginalLibraryPath"
+        }
+
+    Write-Host "EXPLICIT_LINK_LIBRARY_PATH=$MingwLib"
+
+    & alr build
+
+    if ($LASTEXITCODE -ne 0) {
+        throw "Ada build failed with exit code $LASTEXITCODE"
+    }
+}
+finally {
+    $env:LIBRARY_PATH =
+        $OriginalLibraryPath
 }
 
 $ExpectedExecutables = @(
