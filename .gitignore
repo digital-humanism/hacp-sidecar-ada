@@ -1,4 +1,4 @@
-bin/
+/bin/
 obj/
 .alire/
 __pycache__/
@@ -7,3 +7,4 @@ __pycache__/
 *.jsonl
 *.log
 alire/
+/test/matrix/t_rs/rust/target/
