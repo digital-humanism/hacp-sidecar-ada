@@ -5,6 +5,7 @@ authors = ["Digital Humanism Collective"]
 maintainers = ["Digital Humanism Collective <digital.humanism.collective@protonmail.com>"]
 licenses = "AGPL-3.0-or-later"
 tags = ["hacp", "authorization", "ed25519", "ada", "spark"]
+project-files = ["hacp_ada.gpr"]
 
 executables = [
     "hacp_ada_runner",
