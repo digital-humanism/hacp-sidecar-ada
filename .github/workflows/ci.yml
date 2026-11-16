@@ -1,0 +1,66 @@
+name: Ada Fast CI
+
+on:
+  push:
+    branches:
+      - RELEASE/1.1.1
+  pull_request:
+    branches:
+      - RELEASE/1.1.1
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fast-ci:
+    name: Build + Core + HC2 + Authorization-v2
+    runs-on: windows-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Setup Python 3.13.14
+        uses: actions/setup-python@v7.1.0
+        with:
+          python-version: '3.13.14'
+
+      - name: Setup Alire 2.1.1
+        uses: alire-project/setup-alire@v6.0.0
+
+      - name: Select exact Ada toolchain
+        shell: pwsh
+        run: |
+          alr -n toolchain --select gnat_native=14.2.1 gprbuild=22.0.1
+          if ($LASTEXITCODE -ne 0) {
+            throw "Alire toolchain selection failed."
+          }
+
+          alr toolchain
+          if ($LASTEXITCODE -ne 0) {
+            throw "Alire toolchain query failed."
+          }
+
+      - name: Verify pinned identities
+        shell: pwsh
+        run: |
+          $Python = (python --version 2>&1 | Out-String).Trim()
+          $Alire  = (alr --version 2>&1 | Out-String).Trim()
+
+          Write-Host "PYTHON=$Python"
+          Write-Host "ALIRE=$Alire"
+
+          if ($Python -ne 'Python 3.13.14') {
+            throw "Unexpected Python version: $Python"
+          }
+
+          if ($Alire -ne 'alr 2.1.1') {
+            throw "Unexpected Alire version: $Alire"
+          }
+
+      - name: Run Ada fast CI
+        shell: pwsh
+        run: |
+          ./test/matrix/t_ada/Scripts/ci-fast.ps1
