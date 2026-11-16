@@ -1,0 +1,23 @@
+[package]
+name = "hacp-rs"
+version = "0.1.1"
+edition = "2021"
+description = "HACP Rust bounded cross-implementation reproduction"
+license = "AGPL-3.0-only"
+
+[[bin]]
+name = "hacp-rs-runner"
+path = "src/bin/hacp-rs-runner.rs"
+
+[[bin]]
+name = "hacp-rs-core-runner"
+path = "src/bin/hacp-rs-core-runner.rs"
+
+[dependencies]
+ed25519-dalek = { version = "2", features = ["alloc"] }
+sha2 = "0.10"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+base64 = "0.22"
+hex = "0.4"
+ryu = "1"

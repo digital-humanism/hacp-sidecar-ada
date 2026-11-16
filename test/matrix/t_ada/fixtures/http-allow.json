@@ -1,0 +1,84 @@
+{
+  "classification": "IMPLEMENTATION_TRANSPORT_FIXTURE",
+  "canonical_vector": "hc2_001_golden.json",
+  "canonical_test_id": "ENF-HC2-001",
+  "derivation": {
+    "method": "Ada HTTP adapter proposed_action synthesis",
+    "canonical_vector_modified": false,
+    "decision_token_resigned": true,
+    "body": "",
+    "original_action_hash": "04242787c01210e7ac914224772c16e45f947f7f9bea602164a21509816830ba",
+    "derived_action_hash": "e6898dbdf9bd9269a38a9a4cd529c754ea74e824df69118ee67f68810dda3ff5"
+  },
+  "http_request": {
+    "method": "GET",
+    "request_target": "/a/b",
+    "body": ""
+  },
+  "intent_envelope": {
+    "hacp_version": "0.9",
+    "envelope_id": "22222222-2222-2222-2222-222222222222",
+    "principal": "human_admin_01",
+    "principal_kind": "human",
+    "intent_statement": "HC2 HTTP path binding conformance",
+    "scope": {
+      "verbs": [
+        "read"
+      ],
+      "resource_classes": [
+        "http_resource"
+      ],
+      "audiences": [
+        "internal"
+      ],
+      "reversibility": [
+        "reversible"
+      ],
+      "externality": [
+        "internal"
+      ],
+      "data_classes": [
+        "internal"
+      ]
+    },
+    "issued_at": 1786000000,
+    "expires_at": 1786003600,
+    "signer_key_id": "key-ed25519-test-001",
+    "signature": "sowmKlhJyXIj8jISjhxptxa-FjhZp9xUAaqFcXrlZlJwoTpYppPssPu2Fkya2imkdJZcZbCgQPNILZ5ifXr-Cg"
+  },
+  "decision_token": {
+    "hacp_version": "0.9",
+    "token_id": "33333333-3333-3333-3333-000000000001",
+    "envelope_id": "22222222-2222-2222-2222-222222222222",
+    "action_hash": "e6898dbdf9bd9269a38a9a4cd529c754ea74e824df69118ee67f68810dda3ff5",
+    "policy_digest": "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2",
+    "principal": "human_admin_01",
+    "signer_key_id": "key-ed25519-test-001",
+    "issued_at": 1786000200,
+    "expires_at": 1786003600,
+    "decision": "ALLOW",
+    "constraints": {
+      "path": "/a/b"
+    },
+    "signature": "PsJ-DABdli5gSjxRIcfEFwQVg-NW6WhVXJWN2xCPxEb7cQ3jYV4-y_UE8Z7cazNNjDjkLyYhVDWSUc51ulU5CA"
+  },
+  "synthesized_proposed_action": {
+    "hacp_version": "0.9",
+    "verb": "read",
+    "resource_class": "http_resource",
+    "resource_id": "/a/b",
+    "audience": "internal",
+    "reversibility": "reversible",
+    "externality": "internal",
+    "data_class": "internal",
+    "payload_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "policy_context": {
+    "clock": 1786000300,
+    "current_action_count": 0
+  },
+  "expected": {
+    "decision": "ALLOW",
+    "http_status": 200
+  }
+}

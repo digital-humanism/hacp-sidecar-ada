@@ -1,0 +1,29 @@
+with "aws";
+
+project Hacp_Ada is
+
+   for Languages           use ("Ada");
+   for Source_Dirs          use ("src", "src/controlplane", "src/bin");
+   for Object_Dir           use "obj";
+   for Exec_Dir             use "bin";
+   for Create_Missing_Dirs  use "True";
+
+   for Main use
+     ("src/bin/hacp_ada_runner.adb",
+      "src/bin/hacp_ada_auth_v2_runner.adb",
+      "src/bin/hacp_ada_proxy.adb",
+      "src/bin/hacp_ada_mcp.adb",
+      "src/bin/hacp_ada_controlplane.adb",
+      "src/bin/hacp_ada_integrated.adb");
+
+   package Compiler is
+      for Switches ("Ada") use
+        ("-gnat2012", "-gnato");
+   end Compiler;
+
+   package Linker is
+      for Switches ("Ada") use
+        ("-lsodium");
+   end Linker;
+
+end Hacp_Ada;

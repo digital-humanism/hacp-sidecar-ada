@@ -1,0 +1,10 @@
+{
+  "spec_version": "0.9.2",
+  "profile": "HACP-Core",
+  "vector_set": "core-0.9.2",
+  "canonicalization": "JCS-RFC8785",
+  "digest_algorithm": "SHA-256",
+  "vector_digest": "sha256:1e167887106463cf89c81f3898e1f3ae4fd905bc807084959c787287f6575d58",
+  "total_vectors": 38,
+  "generated_at": "2026-08-17T19:28:00Z"
+}

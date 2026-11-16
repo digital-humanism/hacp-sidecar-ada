@@ -1,0 +1,19 @@
+name = "hacp_sidecar_ada"
+description = "Ada/SPARK HACP sidecar reproduction for HACP 1.1.1"
+version = "1.1.1"
+authors = ["Digital Humanism Collective"]
+maintainers = ["Digital Humanism Collective <digital.humanism.collective@protonmail.com>"]
+licenses = "AGPL-3.0-or-later"
+tags = ["hacp", "authorization", "ed25519", "ada", "spark"]
+
+executables = [
+    "hacp_ada_runner",
+    "hacp_ada_auth_v2_runner",
+    "hacp_ada_proxy",
+    "hacp_ada_mcp",
+    "hacp_ada_controlplane",
+    "hacp_ada_integrated"
+]
+
+[[depends-on]]
+aws = "=25.2.0"

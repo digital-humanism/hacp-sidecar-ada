@@ -1,0 +1,9 @@
+bin/
+obj/
+.alire/
+__pycache__/
+*.pyc
+*.pyo
+*.jsonl
+*.log
+alire/
